@@ -1,0 +1,41 @@
+{% set name = "pymorphy3-dicts-uk" %}
+{% set version = "2.4.1.1.1663094765" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pymorphy3-dicts-uk-{{ version }}.tar.gz
+  sha256: b3945a34136e193806cde657ba271d88a60761e75137c13d138a8d142a8d12ac
+
+build:
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python
+
+test:
+  imports:
+    - pymorphy3_dicts_uk
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/no-plagiarism/pymorphy3-dicts
+  summary: Ukrainian dictionaries for pymorphy3
+  license: GPL-3.0-or-later
+  license_file: PLEASE_ADD_LICENSE_FILE
+
+extra:
+  recipe-maintainers:
+    - skupr-anaconda
